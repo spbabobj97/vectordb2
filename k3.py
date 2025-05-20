@@ -1,3 +1,11 @@
+import streamlit as st
+import urllib.request
+import urllib.parse
+import json
+import pandas as pd
+from datetime import datetime
+import sqlite3
+import os
 
 # 페이지 설정
 st.set_page_config(

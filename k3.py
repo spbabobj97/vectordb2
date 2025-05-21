@@ -8,6 +8,14 @@ from datetime import datetime
 import sqlite3
 import os
 
+# 기본 설정
+os.environ["LANGSMITH_TRACING_V2"] = "true"  # 추적 활성화
+os.environ["LANGSMITH_ENDPOINT"] = "https://api.smith.langchain.com"  # 엔드포인트
+os.environ["LANGSMITH_API_KEY"] = "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"  # 발급받은 API 키 입력
+
+# 선택 사항
+os.environ["LANGSMITH_PROJECT"] = "프로젝트_이름"  # 프로젝트 이름 (설정하지 않으면 "default"로 지정됨)
+
 # 페이지 설정
 st.set_page_config(
     page_title="네이버 블로그 리뷰 분석 시스템",

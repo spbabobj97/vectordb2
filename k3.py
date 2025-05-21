@@ -402,15 +402,15 @@ def main():
 st.markdown("""
 <style>
 .ad-banner-container {
-    position: fixed;
+    position: relative;
     left: 0;
-    bottom: 0;
     width: 100%;
     background-color: white;
     border-top: 1px solid #ddd;
     padding: 10px 0;
+    margin-top: 30px;
     text-align: center;
-    z-index: 9999;
+    z-index: 999;
     display: flex;
     flex-direction: column;
     align-items: center;

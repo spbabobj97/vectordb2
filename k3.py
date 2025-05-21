@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import streamlit as st
 import urllib.request
 import urllib.parse
@@ -9,7 +10,7 @@ import os
 
 # 페이지 설정
 st.set_page_config(
-    page_title="네이버 블로그 리뷰 분석 시스템",
+    page_title="찐 리뷰 확인하고 쿠팡에서 구매하기",
     page_icon="📊",
     layout="wide"
 )
@@ -205,12 +206,12 @@ def analyze_reviews(api_key, reviews_text, product_name):
 
         # API 호출
         response = openai.ChatCompletion.create(
-            model="gpt-4o-mini",
+            model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "당신은 제품 리뷰를 분석하는 전문가입니다. 제공된 네이버 블로그 포스트를 기반으로 긍정적 의견, 부정적 의견, 전체 요약을 명확하게 요약합니다."},
                 {"role": "user", "content": prompt}
             ],
-            temperature=0.4,
+            temperature=0.2,
             max_tokens=1000
         )
        
@@ -233,8 +234,8 @@ def main():
        
         # 네이버 API 설정
         st.subheader("네이버 검색 API")
-        naver_client_id = st.text_input("Naver Client ID", value="5oYO4svqBKFHwAx3Uc7T")
-        naver_client_secret = st.text_input("Naver Client Secret", value="7jpulJWz20", type="password")
+        naver_client_id = st.text_input("Naver Client ID", value="9XhhxLV1IzDpTZagoBr1")
+        naver_client_secret = st.text_input("Naver Client Secret", value="J14HFxv3B6", type="password")
        
         # OpenAI API 설정
         st.subheader("OpenAI API")
@@ -392,6 +393,89 @@ def main():
    
     # 데이터베이스 연결 종료
     conn.close()
+
+ # 페이지 하단에 광고 배너 추가
+# 페이지 하단에 광고 배너 추가 코드만 제공
+# main() 함수 끝부분에 다음 코드를 추가하세요
+
+# 페이지 하단에 광고 배너 추가
+st.markdown("""
+<style>
+.ad-banner-container {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ad-banner-content {
+    display: flex;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.ad-banner-image {
+    max-width: 200px;
+    margin-right: 15px;
+}
+
+.ad-banner-text {
+    text-align: left;
+    color: #333;
+}
+
+.ad-banner-text h4 {
+    margin: 0;
+    color: #1a73e8;
+    font-size: 16px;
+}
+
+.ad-banner-text p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.ad-progress-bar {
+    width: 100%;
+    height: 3px;
+    background-color: #f0f0f0;
+    margin-top: 8px;
+    position: relative;
+}
+
+.ad-progress-indicator {
+    height: 100%;
+    width: 60%;
+    background-color: #ff0000;
+    position: absolute;
+    left: 0;
+}
+</style>
+
+<div class="ad-banner-container">
+    <div class="ad-banner-content">
+        <a href="https://www.coupang.com/vp/products/6661512526?itemId=21474551956&vendorItemId=88528821581&q=%EB%83%89%EB%8F%99%EA%B9%80%EB%B0%A5&itemsCount=36&searchId=804e976b9307816&rank=1&searchRank=1&isAddedCart=" target="_blank">
+            <img src="//thumbnail8.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/787750576328567-849383dc-97b2-4c51-b797-8f0a02f66dec.jpg" alt="Advertisement Banner" class="ad-banner-image">
+        </a>
+        <div class="ad-banner-text">
+            <h4> 바바김밥 야채김밥 (냉동)</h4>
+            <p>다채로운 색감이 예쁜 야채 김밥이에요.</p>
+        </div>
+    </div>
+    <div class="ad-progress-bar">
+        <div class="ad-progress-indicator"></div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 # 애플리케이션 실행
 if __name__ == "__main__":
